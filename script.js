@@ -14,14 +14,23 @@ function getMovies(url) {
     .then((res) => res.json())
     .then((data) => {
       showMovies(data.results);
+      console.log(data.results);
     });
 }
 
 popularButton.addEventListener("click", getMovies());
 function showMovies(data) {
   main.innerHTML = "";
-  data.forEach((movie) => {
-    const { title, poster_path, vote_average, overview } = movie;
+  data.forEach((movie, i) => {
+    console.log(i);
+    const {
+      title,
+      poster_path,
+      vote_average,
+      overview,
+      release_date,
+      vote_count,
+    } = movie;
     const movieElement = document.createElement("div");
     movieElement.classList.add("movie");
     movieElement.innerHTML = `<img class="image" src = "${
@@ -30,12 +39,31 @@ function showMovies(data) {
     <div class="info-container"> 
     <div class="movie-info">
     <h3 class="title">${title}</h3>
-    <span class="${getColor(vote_average)}">Rating: ${vote_average}</span>
-    </div>
-    <div class="overview">
-    <h3>Overview:</h3>
+    <div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+       Movie information
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+      <span class="${getColor(vote_average)}">Rating: ${vote_average}</span>
+      <div> <span>Release date: ${release_date}</span></div>
+      <div>
+      <span>Vote count: </span>
+      ${vote_count}
+      </div>
+      
+      <div class="overview">
+    <span>Overview:</span>
     ${overview}
     </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
     </div>`;
     main.append(movieElement);
   });
