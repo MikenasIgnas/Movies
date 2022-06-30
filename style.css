@@ -1,9 +1,10 @@
 #form {
-  background-color: rgb(0, 0, 0, 0.75);
+  background-color: rgb(126, 96, 233);
   height: 100px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  display: none;
 }
 #search {
   height: 40px;
@@ -26,7 +27,7 @@
 }
 .movie {
   width: 100%;
-  background-color: rgb(0, 0, 0, 0.75);
+  background-color: rgb(126, 96, 233);
   color: rgb(255, 255, 255, 0.75);
 }
 .image {
@@ -47,4 +48,22 @@
 }
 .movie-info span.red {
   color: red;
+}
+
+#searchForm {
+  width: 20%;
+  margin: auto;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 200px;
+  height: 200px;
+  background-color: rgb(126, 96, 233);
+  text-align: center;
+}
+#search2 {
+  width: 50%;
+  border-radius: 10px;
+  outline: none;
 }
