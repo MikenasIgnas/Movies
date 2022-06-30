@@ -7,6 +7,7 @@ const submitButton = document.getElementById("submitButton");
 const main = document.getElementById("main");
 const form = document.getElementById("form");
 const search = document.getElementById("search");
+const searchForm = document.getElementById("searchForm");
 const popularButton = document.getElementById("pupularButton");
 const search_url = base_url + "/search/movie?" + api_key;
 function getMovies(url) {
@@ -40,10 +41,10 @@ function showMovies(data) {
     <div class="movie-info">
     <h3 class="title">${title}</h3>
     <div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-       Movie information
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Movie information
       </button>
     </h2>
     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -77,13 +78,21 @@ function getColor(vote) {
     return "red";
   }
 }
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const searchTerm = search.value;
-  if (searchTerm) {
-    getMovies(search_url + "&query=" + searchTerm);
-  } else {
-    getMovies(api_url);
-  }
-  search.value = "";
-});
+const search2 = document.getElementById("search2");
+
+function searchMovie(formSelect, searchInput) {
+  formSelect.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const searchTerm = searchInput.value;
+    if (searchTerm) {
+      getMovies(search_url + "&query=" + searchTerm);
+    } else {
+      getMovies(api_url);
+    }
+    formSelect.style.display = "none";
+    form.style.display = "flex";
+    searchInput.value = "";
+  });
+}
+searchMovie(searchForm, search2);
+searchMovie(form, search);
